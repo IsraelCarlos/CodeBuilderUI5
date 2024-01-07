@@ -1,0 +1,80 @@
+<mvc:View controllerName="bc.dev.CODE_BUILDER.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" 
+xmlns:ce="sap.ui.codeeditor" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Shell id="shell">
+		<App id="app" class="sapUiSizeCozy">
+			<pages>
+				<Page id="page" title="Code Genarete: Table/Form/Mockdata"  >
+					<content>
+						<l:Splitter >
+						<!--<ce:CodeEditor id="aCodeEditor" value="Teste"  type="xml" />-->
+						<!--<HBox>-->
+							<VBox  class="sapUiMediumMarginEnd">
+								<VBox class="sapUiSmallMarginBottom" >
+									<!--<Label text="Nome da Entidade (Tabela)"/>-->
+									<!--<Input id="entityName" width="15em" placeholder="Nome da Entidade (Tabela)"  liveChange="onChange" />-->
+								</VBox>
+								<Table mode="Delete" id="tableFields" items="{path: '/items'}" delete="deleteItem">
+									<headerToolbar>
+										<Toolbar>
+											<Title text="Campos" />
+											<Input id="entityName" width="15em" placeholder="Nome da Entidade (Tabela)"  liveChange="onChange" />
+											<ToolbarSpacer/>
+											<Button icon="sap-icon://add" press="addItem"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column> <Text text="Campo" /> </Column>
+										<Column> <Text text="Título"/> </Column>
+										<Column> <Text text="Tipo"/> </Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Input value="{field}" change="onChange" liveChange="liveChangeField"/>
+												<Input value="{title}" change="onChange"/>
+												<ComboBox selectedKey="{type}" change="onChange">
+													<items>
+														<core:ListItem key="Tx" text="Texto"/>
+														<core:ListItem key="In" text="Input"/>
+														<core:ListItem key="Mi" text="Multi Input"/>
+														<core:ListItem key="Co" text="ComboBox"/>
+														<core:ListItem key="Mc" text="Multi ComboBox"/>
+														<core:ListItem key="Cx" text="CheckBox"/>
+														<core:ListItem key="Sw" text="Switch"/>
+													</items>
+												</ComboBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<layoutData>
+									<l:SplitterLayoutData size="40%" />
+								</layoutData>
+							</VBox>
+							
+							<VBox >
+								<IconTabHeader
+									id="iconTabHeader"
+									selectedKey="A"
+									select=".onSelectTab">
+									<items>
+										<IconTabFilter text="Tabela Resposiva"		key="A" />
+										<IconTabFilter text="Tabela Grid"			key="B" />
+										<IconTabFilter text="MockData"				key="C" />
+										<IconTabFilter text="Formulário"			key="D" />
+										<IconTabFilter text="Annotations"			key="E" />
+									</items>
+								</IconTabHeader>
+								<ce:CodeEditor id="aCodeEditor" value="{/source}"  height="500px" type="xml" />
+								<layoutData>
+									<l:SplitterLayoutData size="auto" />
+								</layoutData>
+							</VBox>
+						<!--</HBox>-->
+						</l:Splitter>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
